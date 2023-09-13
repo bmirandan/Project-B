@@ -1,0 +1,48 @@
+'use client'
+import Image from 'next/image'
+import styles from './MainLayout.module.css';
+import { usePathname } from 'next/navigation';
+
+export default function MainLayout({children}: {children: React.ReactNode}) {
+  const pathName = usePathname().replace('/', '');
+  return (
+    <main className={styles.main}>
+
+    <div className={styles.description}>
+    <p>
+      Bienvenidos&nbsp;
+      <code className={styles.code}>{pathName}</code>
+    </p>
+    <div>
+      <a
+        href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        By{' '}
+        <Image
+          src="/vercel.svg"
+          alt="Vercel Logo"
+          className={styles.vercelLogo}
+          width={100}
+          height={24}
+          priority
+        />
+      </a>
+    </div>
+  </div>
+
+  <div className={styles.center}>
+    <Image
+      className={styles.logo}
+      src="/next.svg"
+      alt="Next.js Logo"
+      width={180}
+      height={37}
+      priority
+    />
+  </div>
+  {children}
+  </main>
+  )
+}
