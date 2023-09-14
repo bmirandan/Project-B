@@ -1,3 +1,5 @@
+import PokemonDetail from './PokemonDetail.component';
+
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
@@ -21,5 +23,9 @@ type PokemonPageT = {
 
 export default async function PokemonPage({ params: { id } }: PokemonPageT) {
   const pokemon = await getPokemon({ params: { id } });
-  return <div>{id}</div>;
+  return (
+    <div className="flex justify-center h-screen overflow-y-hidden	 ">
+      <PokemonDetail {...pokemon} />
+    </div>
+  );
 }

@@ -32,7 +32,7 @@ async function getPokemons() {
 export default async function Home() {
   const pokemons = await getPokemons();
   return (
-    <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 p-10">
+    <div className="gap-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-10">
       {pokemons.map((pokemon: pokemon) => (
         <PokeCard key={`poke-${pokemon.id}`} {...pokemon} />
       ))}
