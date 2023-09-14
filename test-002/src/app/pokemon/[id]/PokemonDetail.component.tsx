@@ -1,7 +1,7 @@
 'use client';
 
 import { capitalize } from '@/libs/formater';
-import { IPokemon } from '../../../types/pokemon';
+import { IPokemon, Stat } from '../../../types/pokemon';
 
 import { Avatar, Card, CardBody, Image, Button, Progress, CardFooter } from '@nextui-org/react';
 import { HeartIcon } from '../../../assets/heart.icon';

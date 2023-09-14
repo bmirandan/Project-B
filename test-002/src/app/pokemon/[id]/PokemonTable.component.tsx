@@ -7,11 +7,13 @@ import {
   TableRow,
   TableCell,
 } from '@nextui-org/react';
-import { IPokemon } from '../../../types/pokemon';
+import { Stat } from '../../../types/pokemon';
 import { capitalize } from '@/libs/formater';
 
-export default function PokemonTable({ stats }: IPokemon) {
-  console.log(stats);
+type PokemonTableT = {
+  stats: Stat[];
+};
+export default function PokemonTable({ stats }: PokemonTableT) {
   return (
     <>
       <Table aria-label="Example static collection table">
