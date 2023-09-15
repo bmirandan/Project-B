@@ -1,4 +1,4 @@
-import PokemonDetail from './PokemonDetail.component';
+import { PokemonDetail } from '../../../components/PokemonDetail';
 
 export const dynamicParams = false;
 

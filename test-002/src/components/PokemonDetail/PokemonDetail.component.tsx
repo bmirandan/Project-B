@@ -1,15 +1,15 @@
 'use client';
 
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Avatar, Card, CardBody, Image, Button, Progress, CardFooter } from '@nextui-org/react';
 import { IPokemon, Stat } from '../../types/pokemon';
 import { isFavorite, toggleFavorite } from '@/libs/localFavorites';
 import { HeartIcon } from '../../assets/heart.icon';
 
-import PokemonTable from './PokemonTable.component';
+import { PokemonTable } from './PokemonTable.component';
 import { capitalize } from '@/libs/formater';
 
-export default function PokemonDetail(pokemon: IPokemon) {
+export function PokemonDetail(pokemon: IPokemon) {
   const [liked, setLiked] = useState(isFavorite(pokemon.id));
   const [mainSprite, setMainSprite] = useState(pokemon.sprites.front_default);
 
@@ -17,6 +17,10 @@ export default function PokemonDetail(pokemon: IPokemon) {
     setLiked((v) => !v);
     toggleFavorite(pokemon.id);
   };
+
+  useEffect(() => {
+    setLiked(isFavorite(pokemon.id));
+  }, [pokemon]);
 
   return (
     <Card

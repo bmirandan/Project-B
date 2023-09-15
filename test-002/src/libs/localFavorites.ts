@@ -6,6 +6,8 @@ export const getFavorites = (): number[] => {
 }
 
 export const isFavorite = (id: number): boolean => {   
+    if(typeof window === 'undefined') return false;
+
     return getFavorites().includes(id);
 }
 

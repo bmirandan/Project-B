@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Progress,
   Table,
@@ -13,7 +15,7 @@ import { capitalize } from '@/libs/formater';
 type PokemonTableT = {
   stats: Stat[];
 };
-export default function PokemonTable({ stats }: PokemonTableT) {
+export function PokemonTable({ stats }: PokemonTableT) {
   return (
     <>
       <Table aria-label="Example static collection table">
