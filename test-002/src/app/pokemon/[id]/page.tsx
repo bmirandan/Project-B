@@ -24,7 +24,7 @@ type PokemonPageT = {
 export default async function PokemonPage({ params: { id } }: PokemonPageT) {
   const pokemon = await getPokemon({ params: { id } });
   return (
-    <div className="flex justify-center h-screen overflow-y-hidden	 ">
+    <div className="flex justify-center h-screen">
       <PokemonDetail {...pokemon} />
     </div>
   );

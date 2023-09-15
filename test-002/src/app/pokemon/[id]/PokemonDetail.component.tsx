@@ -33,10 +33,10 @@ export default function PokemonDetail(pokemon: IPokemon) {
 
           <div className="flex flex-col col-span-6 md:col-span-8 gap-10">
             <div className="grid grid-cols-2 place-content-between">
-              <h1 className="text-2xl font-medium"> {capitalize(pokemon.name)}</h1>
+              <h1 className="text-2xl font-medium self-center"> {capitalize(pokemon.name)}</h1>
               <Button
                 isIconOnly
-                className="w-fit text-default-900/60 data-[hover]:bg-foreground/10 justify-self-end"
+                className="w-fit text-default-900/60 data-[hover]:bg-foreground/10 justify-self-end self-center"
                 radius="full"
                 variant="light"
                 onPress={() => setLiked((v) => !v)}
