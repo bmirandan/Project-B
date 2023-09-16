@@ -14,7 +14,7 @@ export default function PokemonFavorites({ pokemonIds }: PokemonFavoritesT) {
     <div className="flex flex-col gap-10">
       <h1 className="text-2xl">Favorite List</h1>
 
-      <div className="grid grid-cols-4 p-10 rounded-md gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 p-10 rounded-md gap-10">
         {pokemonIds.map((id) => (
           <Card
             shadow="sm"
