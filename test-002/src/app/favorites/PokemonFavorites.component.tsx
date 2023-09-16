@@ -21,15 +21,18 @@ export default function PokemonFavorites({ pokemonIds }: PokemonFavoritesT) {
             key={`card${id}`}
             isPressable
             onPress={() => router.push(`/pokemon/${id}`)}
-            className="bg-gradient-to-b from-violet-900 to-fuchsia-900 p-5 rounded-md"
+            className="flex bg-gradient-to-b from-violet-900 to-fuchsia-900 p-5 rounded-md	"
           >
-            <CardBody className="overflow-visible p-0">
-              <Image
-                isZoomed
-                key={`poke-${id}`}
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
-                alt="Pokemon Image"
-              />
+            <CardBody className="flex flex-col p-0 justify-center">
+              <div className="flex flex-row justify-center">
+                <Image
+                  isZoomed
+                  className=""
+                  key={`poke-${id}`}
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
+                  alt="Pokemon Image"
+                />
+              </div>
             </CardBody>
           </Card>
         ))}
