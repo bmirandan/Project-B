@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { PokemonDetail } from '../../../components/PokemonDetail';
 
 export const dynamicParams = false;
@@ -9,10 +10,9 @@ export async function generateStaticParams() {
 }
 
 async function getPokemon({ params: { id } }: PokemonPageT) {
-  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-  const post = await res.json();
+  const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
-  return post;
+  return data;
 }
 
 type PokemonPageT = {
