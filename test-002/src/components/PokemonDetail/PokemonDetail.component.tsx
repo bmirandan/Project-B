@@ -25,74 +25,74 @@ export function PokemonDetail(pokemon: IPokemon) {
   return (
     <Card
       isBlurred
-      className="overflow-y-hidden border-none bg-background/30 dark:bg-default-00/50 max-w-[700px] max-h-[auto] mb-20 bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20"
+      className="border-none bg-background/30 dark:bg-default-00/50 max-w-[900px]  bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20"
       shadow="sm"
     >
-      <CardBody>
-        <div className="grid grid-cols-6 md:grid-cols-12 gap-6 md:gap-4 items-center justify-center ">
-          <div className="relative col-span-6 md:col-span-4">
-            <Image
-              alt="Album cover"
-              className="object-cover bg-gradient-to-r from-violet-500/40 to-fuchsia-500/40"
-              height={200}
-              shadow="md"
-              src={mainSprite}
-              width={400}
-            />
-          </div>
+      <CardBody className="overflow-hidden">
+        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-4">
+          <Image
+            alt="Album cover"
+            className="object-cover bg-gradient-to-r from-violet-500/40 to-fuchsia-500/40"
+            height={200}
+            shadow="md"
+            src={mainSprite}
+            width={300}
+          />
 
-          <div className="flex flex-col col-span-6 md:col-span-8 gap-10">
-            <div className="grid grid-cols-2 place-content-between">
-              <h1 className="text-2xl font-medium self-center"> {capitalize(pokemon.name)}</h1>
-              <Button
-                isIconOnly
-                className="w-fit text-default-900/60 data-[hover]:bg-foreground/10 justify-self-end self-center"
-                radius="full"
-                variant="light"
-                onPress={() => handleLike()}
-              >
-                <HeartIcon
-                  className={liked ? '[&>path]:stroke-transparent' : ''}
-                  fill={liked ? 'currentColor' : 'none'}
-                />
-              </Button>
-            </div>
-            <div className="flex flex-col gap-5">
-              <h3>Variants</h3>
-              <div className="flex gap-10 items-center ml-10">
-                {pokemon.sprites.front_default && (
-                  <Avatar
-                    src={pokemon.sprites.front_default}
-                    className="bg-indigo-700 w-20 h-20 text-large"
-                    size="lg"
-                    onClick={() => setMainSprite(pokemon.sprites.front_default)}
+          <div className="flex self-center">
+            <div className="flex flex-col col-span-6 md:col-span-8 gap-10">
+              <div className="flex flex-row justify-between">
+                <h1 className="text-2xl font-medium self-center"> {capitalize(pokemon.name)}</h1>
+                <Button
+                  isIconOnly
+                  className="w-fit text-default-900/60 data-[hover]:bg-foreground/10 justify-self-end self-center"
+                  radius="full"
+                  variant="light"
+                  onPress={() => handleLike()}
+                >
+                  <HeartIcon
+                    className={liked ? '[&>path]:stroke-transparent' : ''}
+                    fill={liked ? 'currentColor' : 'none'}
                   />
-                )}
-                {pokemon.sprites.front_female && (
-                  <Avatar
-                    src={pokemon.sprites.front_female}
-                    className="bg-indigo-700 w-20 h-20 text-large"
-                    size="lg"
-                    onClick={() => setMainSprite(pokemon.sprites.front_female)}
-                  />
-                )}
-                {pokemon.sprites.front_shiny && (
-                  <Avatar
-                    src={pokemon.sprites.front_shiny}
-                    className="bg-indigo-700 w-20 h-20 text-large"
-                    size="lg"
-                    onClick={() => setMainSprite(pokemon.sprites.front_shiny)}
-                  />
-                )}
-                {pokemon.sprites.front_shiny_female && (
-                  <Avatar
-                    ImgComponent={Image}
-                    src={pokemon.sprites.front_shiny_female}
-                    className="bg-indigo-700 w-20 h-20 text-large"
-                    size="lg"
-                    onClick={() => setMainSprite(pokemon.sprites.front_shiny_female)}
-                  />
-                )}
+                </Button>
+              </div>
+              <div className="flex flex-col gap-5">
+                <h3>Variants</h3>
+                <div className="grid grid-cols-4 gap-5 items-center ml-5">
+                  {pokemon.sprites.front_default && (
+                    <Avatar
+                      src={pokemon.sprites.front_default}
+                      className="bg-indigo-700 w-20 h-20 text-large"
+                      size="lg"
+                      onClick={() => setMainSprite(pokemon.sprites.front_default)}
+                    />
+                  )}
+                  {pokemon.sprites.front_female && (
+                    <Avatar
+                      src={pokemon.sprites.front_female}
+                      className="bg-indigo-700 w-20 h-20 text-large"
+                      size="lg"
+                      onClick={() => setMainSprite(pokemon.sprites.front_female)}
+                    />
+                  )}
+                  {pokemon.sprites.front_shiny && (
+                    <Avatar
+                      src={pokemon.sprites.front_shiny}
+                      className="bg-indigo-700 w-20 h-20 text-large"
+                      size="lg"
+                      onClick={() => setMainSprite(pokemon.sprites.front_shiny)}
+                    />
+                  )}
+                  {pokemon.sprites.front_shiny_female && (
+                    <Avatar
+                      ImgComponent={Image}
+                      src={pokemon.sprites.front_shiny_female}
+                      className="bg-indigo-700 w-20 h-20 text-large"
+                      size="lg"
+                      onClick={() => setMainSprite(pokemon.sprites.front_shiny_female)}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>

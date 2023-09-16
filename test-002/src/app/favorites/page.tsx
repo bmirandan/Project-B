@@ -11,7 +11,7 @@ export default function HomePage() {
   useEffect(() => {}, [pokemons]);
 
   return (
-    <div className=" w-screen h-screen p-5">
+    <div className=" w-screen h-screen p-5 ">
       {pokemons.length > 0 ? <PokemonFavorites pokemonIds={pokemons} /> : <NoFavorites />}
     </div>
   );
