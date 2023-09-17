@@ -13,7 +13,7 @@ type pokemonResponse = {
   };
   
 export async function GET() {
-  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151', {
+  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1010', {
     headers: {
       'Content-Type': 'application/json',
     },
