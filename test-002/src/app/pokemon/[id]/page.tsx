@@ -4,7 +4,7 @@ import { PokemonDetail } from '../../../components/PokemonDetail';
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const pokemons = [...Array(151)].map((_, index) => ({ id: `${index + 1}` }));
+  const pokemons = [...Array(1010)].map((_, index) => ({ id: `${index + 1}` }));
 
   return pokemons;
 }
