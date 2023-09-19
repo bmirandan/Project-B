@@ -32,7 +32,7 @@ export function PokemonListLoadMore({ filter }: PokemonListLoadMoreT) {
     }
 
     useEffect(() => {
-        if (isInView && !isLoading && maxFetch !== pokemons.length) {
+        if (isInView && !isLoading && maxFetch !== pokemons.length && filter === '') {
             setIsLoading(true);
             loadMorePokemons();
         }
@@ -41,8 +41,10 @@ export function PokemonListLoadMore({ filter }: PokemonListLoadMoreT) {
     useEffect(() => {
         const getPokemons = async () => {
             setIsLoading(true);
+
             const response = await fetch('/api/pokemons');
             const { pokemons, count } = await response.json();
+
             setIsLoading(false);
             setMaxFetch(count);
             setPokemons(pokemons);
@@ -50,9 +52,27 @@ export function PokemonListLoadMore({ filter }: PokemonListLoadMoreT) {
         getPokemons();
     }, []);
 
+    useEffect(() => {
+        const getPokemons = async () => {
+
+            setIsLoading(true);
+            
+            
+            const response = (filter === '') ? await fetch('/api/pokemons') : await fetch('/api/allPokemon');
+            const { pokemons } = await response.json();
+            const pokeList = pokemons.filter(({ name }: PokemonT) => name.includes(filter))
+            
+            setPagesLoaded(0);
+            setPokemons(pokeList);
+            setIsLoading(false);
+
+        };
+        getPokemons();
+    }, [filter]);
+
     return <>
         <PokemonList pokemons={pokemons} isLoading={isLoading} />
         {isLoading && <PokemonListSkeleton />}
-        <div ref={ref} />
+        < div ref={ref}></div>
     </>
 }

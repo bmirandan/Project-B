@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
   const { results } = await response.json();
 
-  const pokemons = results.map(({ url }: PokemonResponseT, index: number) => matchPokeId(url, index + 1));
+  const pokemons = results.map(({ url }: PokemonResponseT, index: number) => ({id: matchPokeId(url, index + 1).toString()}));
 
   return pokemons;
 }
