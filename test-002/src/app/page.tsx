@@ -5,6 +5,7 @@ import { useState, Suspense } from 'react';
 import SearchBar from '@/components/SearchBar/SearchBar.component';
 import PokemonList from '@/components/PokemonList/PokemonList.component';
 import PokemonListSkeleton from '@/components/PokemonList/PokemonList.loading';
+import { PokemonListLoadMore } from '@/components/PokemonList/PokemonListLoadMore.component';
 
 export default function Home() {
   const [searchWord, setSearchWord] = useState('');
@@ -16,7 +17,7 @@ export default function Home() {
     <div className="flex flex-col justify-center  p-10 gap-20">
       <SearchBar onSearch={handleSearch} />
         <Suspense fallback={<PokemonListSkeleton />}>
-          <PokemonList filter={searchWord} />
+          <PokemonListLoadMore filter={searchWord} />
         </Suspense>
     </div>
   );

@@ -1,34 +1,25 @@
 import { NextResponse } from 'next/server'
- 
-type pokemonResponse = {
-    name: string;
-    url: string;
-  };
-  
-  type pokemon = {
-    id: string;
-    name: string;
-    url: string;
-    image: string;
-  };
-  
+import { PokemonResponseT } from '@/types/listPokemon';
+import { matchPokeId } from '@/libs/matcher';
+
 export async function GET() {
-  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1010', {
+  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151', {
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
-  const { results } = await res.json();
+  const { results, count } = await res.json();
 
-  const pokemons = results.map((poke: pokemonResponse, index: number) => {
-    const idPokemon = index + 1;
+  const pokemons = results.map((poke: PokemonResponseT, index: number) => {
+    const idPokemon = matchPokeId(poke.url, index + 1);
+
     return {
       id: idPokemon,
       ...poke,
-      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${idPokemon}.svg`,
+      image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${idPokemon}.png`,
     };
   });
  
-  return NextResponse.json({ pokemons })
+  return NextResponse.json({ pokemons, count })
 }

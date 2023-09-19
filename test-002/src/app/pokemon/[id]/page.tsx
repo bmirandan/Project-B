@@ -1,10 +1,28 @@
 import axios from 'axios';
 import { PokemonDetail } from '../../../components/PokemonDetail';
+import { PokemonResponseT } from '@/types/listPokemon';
+import { matchPokeId } from '@/libs/matcher';
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const pokemons = [...Array(1010)].map((_, index) => ({ id: `${index + 1}` }));
+  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const { count } = await res.json();
+
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${count}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const { results } = await response.json();
+
+  const pokemons = results.map(({ url }: PokemonResponseT, index: number) => matchPokeId(url, index + 1));
 
   return pokemons;
 }
