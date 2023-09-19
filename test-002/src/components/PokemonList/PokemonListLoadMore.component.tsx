@@ -60,7 +60,7 @@ export function PokemonListLoadMore({ filter }: PokemonListLoadMoreT) {
             
             const response = (filter === '') ? await fetch('/api/pokemons') : await fetch('/api/allPokemon');
             const { pokemons } = await response.json();
-            const pokeList = pokemons.filter(({ name }: PokemonT) => name.includes(filter))
+            const pokeList = pokemons.filter(({ name }: PokemonT) => name.toLowerCase().includes(filter.toLowerCase()))
             
             setPagesLoaded(0);
             setPokemons(pokeList);
