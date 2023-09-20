@@ -3,9 +3,11 @@ import { PokemonDetail } from '../../../components/PokemonDetail';
 import { PokemonResponseT } from '@/types/listPokemon';
 import { matchPokeId } from '@/libs/matcher';
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
+  console.log('hehe');
   const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1', {
     headers: {
       'Content-Type': 'application/json',
@@ -14,7 +16,7 @@ export async function generateStaticParams() {
 
   const { count } = await res.json();
 
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${count}`, {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${count - 500}`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -22,7 +24,9 @@ export async function generateStaticParams() {
 
   const { results } = await response.json();
 
-  const pokemons = results.map(({ url }: PokemonResponseT, index: number) => ({id: matchPokeId(url, index + 1).toString()}));
+  const pokemons = results.map(({ url }: PokemonResponseT, index: number) => ({
+    id: matchPokeId(url, index + 1).toString(),
+  }));
 
   return pokemons;
 }

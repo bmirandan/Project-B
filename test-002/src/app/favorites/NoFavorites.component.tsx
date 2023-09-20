@@ -2,8 +2,9 @@ import Image from 'next/image';
 
 type NoFavoritesT = {
   title?: string;
+  children?: JSX.Element;
 };
-export default function NoFavorites({ title }: NoFavoritesT) {
+export default function NoFavorites({ title, children }: NoFavoritesT) {
   return (
     <div className="flex flex-col gap-20 items-center">
       <h1 className="col-span-full text-4xl font-medium">{title ?? 'No hay favoritos'}</h1>
@@ -15,6 +16,8 @@ export default function NoFavorites({ title }: NoFavoritesT) {
         }
         alt="Ditto Image Pokemon"
       />
+
+      {children}
     </div>
   );
 }

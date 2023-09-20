@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { PokemonDetail } from '../../../components/PokemonDetail';
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
   const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1281');
