@@ -7,7 +7,6 @@ export const dynamicParams = true;
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  console.log('hehe');
   const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1', {
     headers: {
       'Content-Type': 'application/json',
