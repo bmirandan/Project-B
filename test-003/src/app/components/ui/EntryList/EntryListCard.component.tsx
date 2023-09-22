@@ -11,13 +11,11 @@ export function EntryListCard({ _id, description, createdAt }: EntryListCardT) {
   const { setDragging } = useContext(UIContext);
 
   const onDragStart = (event: DragEvent<HTMLDivElement>) => {
-    console.log(event);
     event.dataTransfer.setData('text', _id);
     setDragging(true);
   };
 
   const onDragEnd = (event: DragEvent<HTMLDivElement>) => {
-    console.log(event);
     setDragging(false);
   };
 
