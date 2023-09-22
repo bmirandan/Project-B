@@ -52,7 +52,7 @@ export function EntryList({ status }: EntryListT) {
             opacity: isDragging ? 0.5 : 1,
             display: 'flex',
             flexDirection: 'column',
-            gap: 5,
+            gap: 1,
             transition: 'all 0.3s',
           }}
         >
