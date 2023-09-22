@@ -4,7 +4,9 @@ type UIActionT =
   | { type: 'UI - Open SideBar' }
   | { type: 'UI - Close SideBar' }
   | { type: 'UI - Set DarkMode' }
-  | { type: 'UI - Set LightMode' };
+  | { type: 'UI - Set LightMode' }
+  | { type: 'UI - Set IsAdding'; isAdding: boolean }
+  | { type: 'UI - Set Dragging'; isDragging: boolean };
 
 export const uiReducer = (state: UIState, action: UIActionT): UIState => {
   switch (action.type) {
@@ -31,7 +33,16 @@ export const uiReducer = (state: UIState, action: UIActionT): UIState => {
         ...state,
         darkMode: false,
       };
-
+    case 'UI - Set IsAdding':
+      return {
+        ...state,
+        isAddingEntry: action.isAdding,
+      };
+    case 'UI - Set Dragging':
+      return {
+        ...state,
+        isDragging: action.isDragging,
+      };
     default:
       return state;
   }
