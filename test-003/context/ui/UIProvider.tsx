@@ -12,7 +12,7 @@ export interface UIState {
 
 const UI_INITIAL_STATE: UIState = {
   sideMenuOpen: false,
-  darkMode: false,
+  darkMode: true,
   isAddingEntry: false,
   isDragging: false,
 };
@@ -46,7 +46,7 @@ export function UIProvider({ children }: UIProviderT) {
 
   const setDragging = (isDragging: boolean) => {
     dispatch({ type: 'UI - Set Dragging', isDragging });
-  }
+  };
 
   return (
     <UIContext.Provider
@@ -57,7 +57,7 @@ export function UIProvider({ children }: UIProviderT) {
         setDarkMode,
         setLightMode,
         setIsAddingEntry,
-        setDragging
+        setDragging,
       }}
     >
       {children}

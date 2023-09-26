@@ -3,6 +3,7 @@ import { IEntry } from '../../interfaces';
 
 interface IContextProps {
   entries: IEntry[];
+  getEntry: (id: string) => Promise<IEntry>;
   addEntry: (entry: string) => void;
   updateEntry: (entry: IEntry) => void;
 }

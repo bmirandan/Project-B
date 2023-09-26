@@ -29,3 +29,14 @@ pnpm dev
 bun run dev
 ```
 
+### Crear archivo .env con la siguiente URI
+```
+MONGODB_URI = mongodb://localhost:27017/entriesdb
+```
+
+### Seed
+
+Puedes correr este endpoint con un **POST**
+```
+http://localhost:3000/api/seed
+```

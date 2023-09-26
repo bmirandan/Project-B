@@ -3,6 +3,7 @@ import { EntriesContext, entriesReducer } from '.';
 import { IEntry } from '../../interfaces';
 import { v4 as uuidv4 } from 'uuid';
 import entriesApi from '../../services/entriesApi';
+import { enqueueSnackbar } from 'notistack';
 
 export interface EntriesState {
   entries: IEntry[];
@@ -17,6 +18,11 @@ type EntriesProviderT = {
 };
 export function EntriesProvider({ children }: EntriesProviderT) {
   const [state, dispatch] = useReducer(entriesReducer, Entries_INITIAL_STATE);
+
+  const getEntry = async (_id: string) => {
+    const { data } = await entriesApi.get<IEntry>(`/entries/${_id}`);
+    return data;
+  };
 
   const addEntry = async (description: string) => {
     const newEntry: IEntry = {
@@ -33,6 +39,12 @@ export function EntriesProvider({ children }: EntriesProviderT) {
     const { data } = await entriesApi.put<IEntry>('/entries', entry);
 
     dispatch({ type: '[Entry] - Update', payload: data });
+
+    enqueueSnackbar('Entry updated', {
+      variant: 'success',
+      autoHideDuration: 2000,
+      anchorOrigin: { vertical: 'top', horizontal: 'right' },
+    });
   };
 
   const refreshEntries = async () => {
@@ -45,7 +57,7 @@ export function EntriesProvider({ children }: EntriesProviderT) {
   }, []);
 
   return (
-    <EntriesContext.Provider value={{ ...state, addEntry, updateEntry }}>
+    <EntriesContext.Provider value={{ ...state, addEntry, updateEntry, getEntry }}>
       {children}
     </EntriesContext.Provider>
   );

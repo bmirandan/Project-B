@@ -1,0 +1,1 @@
+export { getFormatFromDate } from './dateFunction';
