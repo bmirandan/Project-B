@@ -6,47 +6,13 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import './Slider.module.css';
 import { Box, Card, CardContent, CardMedia, Grid, IconButton } from '@mui/material';
+import { ProductT } from '../../interfaces/products';
 
-export default function Slider() {
-  const filteredItems = [
-    {
-      id: 1,
-      img: 'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'camera',
-      price: 200,
-    },
-    {
-      id: 2,
-      img: 'https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Phone',
-      price: 100,
-    },
-    {
-      id: 3,
-      img: 'https://images.pexels.com/photos/12753820/pexels-photo-12753820.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Laptop',
-      price: 500,
-    },
-    {
-      id: 4,
-      img: 'https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Headephone',
-      price: 40,
-    },
-    {
-      id: 5,
-      img: 'https://images.pexels.com/photos/163117/keyboard-white-computer-keyboard-desktop-163117.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Keyboard',
-      price: 140,
-    },
-    {
-      id: 6,
-      img: 'https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=600',
-      description: 'Gaming Mouse',
-      price: 140,
-    },
-  ];
-
+type SiderT = {
+  filteredItems: ProductT['images'];
+};
+export default function Slider({ filteredItems }: SiderT) {
+  console.log(filteredItems);
   const slideLeft = () => {
     let slider = document.getElementById('slider') as HTMLDivElement;
     slider.scrollLeft = slider.scrollLeft - 330;
@@ -79,10 +45,10 @@ export default function Slider() {
           position: 'relative',
         }}
       >
-        {filteredItems.map((item) => (
+        {filteredItems.map((item, index) => (
           <Grid
             item
-            key={item.id}
+            key={`index${item}`}
             xs={12}
             sm={12}
             md={12}
@@ -94,8 +60,8 @@ export default function Slider() {
               <CardContent>
                 <CardMedia
                   component="img"
-                  image={item.img}
-                  alt={item.description}
+                  image={`/products/${item}`}
+                  alt={item}
                   sx={{
                     width: '300px', // 16:9
                     height: '300px',

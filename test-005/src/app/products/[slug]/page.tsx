@@ -17,7 +17,9 @@ export default function ProductPageDetail(props: any) {
   console.log(product);
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12} sm={6} md={7}></Grid>
+      <Grid item xs={12} sm={6} md={7}>
+        <Slider filteredItems={product.images} />
+      </Grid>
       <Grid item xs={12} sm={6} md={5}>
         <Box display="flex" flexDirection="column">
           <Typography variant="h1" component="h1">
