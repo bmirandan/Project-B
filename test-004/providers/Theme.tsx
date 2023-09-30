@@ -3,18 +3,18 @@
 import { useContext } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 
-import { lightTheme, darkTheme } from '../themes';
-import { UIContext } from '../../../context/ui';
+import { UIContext } from '../context/ui';
+import { darkTheme } from '../themes';
 
 type ThemeT = {
-  children: JSX.Element;
+  children: JSX.Element[];
 };
 
 export default function Theme({ children }: ThemeT) {
-  const { darkMode } = useContext(UIContext);
+  const { theme } = useContext(UIContext);
 
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={theme ?? darkTheme}>
       <CssBaseline />
       {children}
     </ThemeProvider>

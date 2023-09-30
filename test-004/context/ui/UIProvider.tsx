@@ -2,15 +2,29 @@
 
 import { useReducer } from 'react';
 import { UIContext, uiReducer } from '.';
+import { Theme } from '@mui/material';
+import { customTheme, darkTheme, lightTheme } from '../../themes';
+import { ThemeT } from './UIContext';
+import Cookies from 'js-cookie';
 
 export interface UIState {
+  theme: Theme;
+  themeValue: ThemeT;
   sideMenuOpen: boolean;
   darkMode: boolean;
   isAddingEntry: boolean;
   isDragging: boolean;
 }
 
+const themes = {
+  custom: customTheme,
+  light: lightTheme,
+  dark: darkTheme,
+};
+
 const UI_INITIAL_STATE: UIState = {
+  themeValue: 'dark',
+  theme: darkTheme,
   sideMenuOpen: false,
   darkMode: true,
   isAddingEntry: false,
@@ -21,8 +35,14 @@ type UIProviderT = {
   children: JSX.Element;
 };
 
+const getInitialFromLocal: UIState = {
+  ...UI_INITIAL_STATE,
+  themeValue: (localStorage.getItem('theme') ?? 'dark') as ThemeT,
+  theme: themes[(localStorage.getItem('theme') ?? 'dark') as ThemeT],
+};
+
 export function UIProvider({ children }: UIProviderT) {
-  const [state, dispatch] = useReducer(uiReducer, UI_INITIAL_STATE);
+  const [state, dispatch] = useReducer(uiReducer, getInitialFromLocal);
 
   const openSideMenu = () => {
     dispatch({ type: 'UI - Open SideBar' });
@@ -32,12 +52,10 @@ export function UIProvider({ children }: UIProviderT) {
     dispatch({ type: 'UI - Close SideBar' });
   };
 
-  const setDarkMode = () => {
-    dispatch({ type: 'UI - Set DarkMode' });
-  };
-
-  const setLightMode = () => {
-    dispatch({ type: 'UI - Set LightMode' });
+  const setTheme = (theme: ThemeT) => {
+    localStorage.setItem('theme', theme);
+    Cookies.set('theme', theme);
+    dispatch({ type: 'UI - Set Theme', theme });
   };
 
   const setIsAddingEntry = (isAdding: boolean) => {
@@ -54,8 +72,7 @@ export function UIProvider({ children }: UIProviderT) {
         ...state,
         openSideMenu,
         closeSideMenu,
-        setDarkMode,
-        setLightMode,
+        setTheme,
         setIsAddingEntry,
         setDragging,
       }}

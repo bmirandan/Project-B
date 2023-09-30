@@ -1,10 +1,17 @@
 import { UIState } from '.';
+import { customTheme, lightTheme, darkTheme } from '../../themes';
+import { ThemeT } from './UIContext';
+
+const themes = {
+  custom: customTheme,
+  light: lightTheme,
+  dark: darkTheme,
+};
 
 type UIActionT =
   | { type: 'UI - Open SideBar' }
   | { type: 'UI - Close SideBar' }
-  | { type: 'UI - Set DarkMode' }
-  | { type: 'UI - Set LightMode' }
+  | { type: 'UI - Set Theme'; theme: ThemeT }
   | { type: 'UI - Set IsAdding'; isAdding: boolean }
   | { type: 'UI - Set Dragging'; isDragging: boolean };
 
@@ -22,16 +29,11 @@ export const uiReducer = (state: UIState, action: UIActionT): UIState => {
         sideMenuOpen: false,
       };
 
-    case 'UI - Set DarkMode':
+    case 'UI - Set Theme':
       return {
         ...state,
-        darkMode: true,
-      };
-
-    case 'UI - Set LightMode':
-      return {
-        ...state,
-        darkMode: false,
+        themeValue: action.theme,
+        theme: themes[action.theme],
       };
     case 'UI - Set IsAdding':
       return {
