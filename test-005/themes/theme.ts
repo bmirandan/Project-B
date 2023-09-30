@@ -17,6 +17,9 @@ export const theme = createTheme({
     secondary: {
       main: '#3A64D8',
     },
+    info: {
+      main: '#fff',
+    },
   },
   typography: {
     fontFamily: roboto.style.fontFamily,
@@ -69,7 +72,8 @@ export const theme = createTheme({
           boxShadow: 'none',
           borderRadius: 10,
           ':hover': {
-            backgroundColor: 'rgba(0,0,0,0.05)',
+            color: '#fff',
+            backgroundColor: '#274494',
             transition: 'all 0.3s ease-in-out',
           },
         },
