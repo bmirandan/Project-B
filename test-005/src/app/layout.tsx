@@ -1,5 +1,6 @@
 import ThemeRegistry from '../../themes/ThemeRegistry';
 import ShopLayout from '../../components/ShopLayout/ShopLayout.component';
+import { UIProvider } from '../../context/ui';
 
 export const metadata = {
   title: 'Teslo - shop',

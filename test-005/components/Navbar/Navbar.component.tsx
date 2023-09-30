@@ -7,12 +7,16 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import SearchOutlined from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Badge from '@mui/material/Badge';
+import { useContext } from 'react';
+import { UIContext } from '../../context/ui';
 
 export default function Navbar() {
+  const { setSideMenuState, isSideMenuOpen } = useContext(UIContext);
+
   return (
     <AppBar position="sticky" elevation={0}>
       <Toolbar>
@@ -61,7 +65,7 @@ export default function Navbar() {
           </Badge>
         </IconButton>
 
-        <Button>Menu</Button>
+        <Button onClick={() => setSideMenuState(!isSideMenuOpen)}>Menu</Button>
       </Toolbar>
     </AppBar>
   );
