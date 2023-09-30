@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { IconButton } from '@mui/material';
 import SearchOutlined from '@mui/icons-material/SearchOutlined';
-import ShoppingcartOutlined from '@mui/icons-material/ShoppingcartOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Badge from '@mui/material/Badge';
 
 export default function Navbar() {
@@ -57,7 +57,7 @@ export default function Navbar() {
 
         <IconButton size="large" edge="start">
           <Badge badgeContent={2} color="secondary">
-            <ShoppingcartOutlined />
+            <ShoppingCartOutlinedIcon />
           </Badge>
         </IconButton>
 
