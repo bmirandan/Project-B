@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Grid, CardActionArea, CardMedia, Typography, Box } from '@mui/material';
+import { Card, Grid, CardActionArea, CardMedia, Typography, Box, Fade } from '@mui/material';
 import { ProductT } from '../../../interfaces/products';
 import { useMemo, useState } from 'react';
 
@@ -19,7 +19,13 @@ export default function ProductCard({ product }: ProductCardT) {
     <Grid item key={product.slug} xs={6} sm={4} md={4}>
       <Card onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
         <CardActionArea>
-          <CardMedia component="img" image={productImage} alt={product.title} />
+          {!isHovered ? (
+            <CardMedia component="img" image={productImage} alt={product.title} />
+          ) : (
+            <Fade in={isHovered} {...(isHovered ? { timeout: 500 } : {})}>
+              <CardMedia component="img" image={productImage} alt={product.title} />
+            </Fade>
+          )}
         </CardActionArea>
       </Card>
       <Box sx={{ mt: 1 }} className="fadeIn">

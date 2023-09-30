@@ -1,14 +1,12 @@
 import Typography from '@mui/material/Typography';
-import { initialData } from '../../database/products';
-import ProductList from './products/ProductList.component';
+import ProductsPage from './products/page';
 
 export default function HomePage() {
   return (
     <>
       <Typography variant="h1">Tienda</Typography>
       <Typography variant="h2">Todos los productos</Typography>
-
-      <ProductList products={initialData.products} />
+      <ProductsPage />
     </>
   );
 }

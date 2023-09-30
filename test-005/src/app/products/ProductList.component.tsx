@@ -1,5 +1,3 @@
-'use client';
-
 import { Grid } from '@mui/material';
 import { ProductT } from '../../../interfaces/products';
 import ProductCard from './ProductCard.component';
