@@ -3,6 +3,8 @@ import { initialData } from '../../../../database/products';
 import { ProductT } from '../../../../interfaces/products';
 import { useMemo } from 'react';
 import Slider from '../../../../components/Slider/Slider.component';
+import ItemCounter from '../../../../components/ItemCounter/ItemCounter.component';
+import ProductSizeSelector from '../ProductSizeSelector.component';
 
 export const metadata = {
   title: 'Teslo - shop',
@@ -28,8 +30,10 @@ export default function ProductPageDetail(props: any) {
           <Typography variant="h2" component="h2">
             {`$${product.price}`}
           </Typography>
-          <Box>
+          <Box sx={{ my: 2 }}>
             <Typography variant="subtitle2"> Cantidad </Typography>
+            <ItemCounter />
+            <ProductSizeSelector selectedSize={product.sizes[0]} sizes={product.sizes} />
           </Box>
           <Button color="secondary" className="circular-btn">
             Add to cart
