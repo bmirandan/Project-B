@@ -27,6 +27,21 @@ export const theme = createTheme({
   },
   components: {
     MuiLink: {
+      variants: [
+        {
+          props: { variant: 'overline' },
+          style: {
+            color: '#3A64D8',
+            textDecoration: 'underline',
+          },
+        },
+      ],
+
+      styleOverrides: {
+        root: {
+          color: '#1E1E1E',
+        },
+      },
       defaultProps: {
         underline: 'none',
       },
@@ -71,7 +86,7 @@ export const theme = createTheme({
         root: {
           textTransform: 'none',
           boxShadow: 'none',
-          borderRadius: 10,
+          borderRadius: 30,
           ':hover': {
             color: '#fff',
             backgroundColor: '#274494',
@@ -80,7 +95,6 @@ export const theme = createTheme({
         },
       },
     },
-
     MuiCard: {
       defaultProps: {
         elevation: 0,
