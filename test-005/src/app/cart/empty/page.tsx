@@ -1,12 +1,10 @@
+'use client';
+
 import { RemoveShoppingCartOutlined } from '@mui/icons-material';
 import { Box, Typography, Link } from '@mui/material';
 import NextLink from 'next/link';
 import ShopLayout from '../../../../components/ShopLayout/ShopLayout.component';
 
-export const metadata = {
-  title: 'Empty Cart',
-  description: 'There is no items in the cart',
-};
 export default function EmptyPage() {
   return (
     <ShopLayout>
